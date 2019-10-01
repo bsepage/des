@@ -1,7 +1,6 @@
 # des
 Data Encryption Standard: Easy to Read and Learn
 
-**Warning**: This code is provided as-is. It is intended for research and educational purpose only. You are responsible for protecting yourself, your property and data, and others from any risks caused by this project.
 
 # What
 
@@ -12,7 +11,7 @@ This project provides an implementation of the DES algorithm, intended to be eas
 - Decryption with an unkown input length
 
 
-Key and plaintext are read from directly from text files (see the usr/ folder).
+Key and plaintexts can be modified directly from their respective text files (see the usr/ folder).
 
 # How
 
@@ -37,6 +36,8 @@ Test the correct execution for Exercices 3 and 4
 The files usr/plaintext3.txt and usr/plaintext4.txt should give the same output, and you should observe the additionnal padding in usr/plaintext4.txt.
 
 # Additional notes
+
+**Warning**: This code is provided as-is. It is intended for research and educational purpose only. You are responsible for protecting yourself, your property and data, and others from any risks caused by this project.
 
 The current version of the project has been validated against memory leaks as follows
 - valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./bin/des
