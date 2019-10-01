@@ -45,7 +45,7 @@ void des_rot_lft(unsigned char *key, size_t len) {
 		unsigned char b0 = BIT(key, 0), b28 = BIT(key, 28);
 		for (size_t i=0; i<7; ++i) {
 			if ((key[i] & 0x80) && i)
-                key[i-1] |= 0x01;
+        	        key[i-1] |= 0x01;
 			key[i] <<= 1;
 		}
 		(b0) ? SET(key, 27) : CLR(key, 27);
@@ -60,14 +60,14 @@ void des_rot_lft(unsigned char *key, size_t len) {
  *
  */
 unsigned char *des_idx_sbt(const size_t index) {
-    if 		(index==0)  return tbl_txt_sb1;
-    else if (index==1)	return tbl_txt_sb2;
-    else if (index==2)  return tbl_txt_sb3;
-    else if (index==3)  return tbl_txt_sb4;
-    else if (index==4)  return tbl_txt_sb5;
-    else if (index==5)  return tbl_txt_sb6;
-    else if (index==6)  return tbl_txt_sb7;
-    else                return tbl_txt_sb8;
+	if 	(index==0)  return tbl_txt_sb1;
+	else if (index==1)  return tbl_txt_sb2;
+	else if (index==2)  return tbl_txt_sb3;
+	else if (index==3)  return tbl_txt_sb4;
+	else if (index==4)  return tbl_txt_sb5;
+	else if (index==5)  return tbl_txt_sb6;
+	else if (index==6)  return tbl_txt_sb7;
+	else                return tbl_txt_sb8;
 }
 
 /** \brief Perform eight substitution operations.
@@ -100,8 +100,8 @@ void des_cph(unsigned char *dst, const unsigned char *src, const unsigned char *
 
 	des_pmt(buf_48b, src, tbl_txt_exp_pmt, _48b);			// Text expansion permutation (32b --> 48b)
 	mem_xor(buf_48b, key, _48b);
-	des_sbt(buf_32b, buf_48b, _32b);						// Text substitution (48b --> 32b)
-	des_pmt(dst, buf_32b, tbl_txt_pmt, _32b);				// Text permutation (32b --> 32b)
+	des_sbt(buf_32b, buf_48b, _32b);				// Text substitution (48b --> 32b)
+	des_pmt(dst, buf_32b, tbl_txt_pmt, _32b);			// Text permutation (32b --> 32b)
 
 	mem_rnd(buf_32b, _32b);
 	mem_rnd(buf_48b, _48b);
@@ -122,7 +122,7 @@ void des(unsigned char *dst, const unsigned char *src, const unsigned char *key,
 	unsigned char pTo_key[16][_48b];
 	unsigned char *pTo_tbl_key_shf = tbl_key_shf;
 
-	des_pmt(key_56b, key, tbl_key_pmt, _56b);				// Key permutation (64b --> 56b)
+	des_pmt(key_56b, key, tbl_key_pmt, _56b);			// Key permutation (64b --> 56b)
 	for (size_t i=0; i<16; ++i, ++pTo_tbl_key_shf) {
 		des_rot_lft(key_56b, *pTo_tbl_key_shf);
 		des_pmt(pTo_key[i], key_56b, tbl_key_cmp, _48b);	// Key compression (56b --> 48b)
@@ -131,7 +131,7 @@ void des(unsigned char *dst, const unsigned char *src, const unsigned char *key,
 	des_pmt(buf_64b, src, tbl_txt_ini_pmt, _64b);			// Text initial permutation (64b --> 64b)
 	for (size_t i=0; i<16; ++i, ++pTo_tbl_key_shf){
 		(enc) ? des_cph(buf_32b, buf_64b+_32b, pTo_key[i]) :
-				des_cph(buf_32b, buf_64b+_32b, pTo_key[15-i]);
+			des_cph(buf_32b, buf_64b+_32b, pTo_key[15-i]);
 		mem_xor(buf_32b, buf_64b, _32b);
 		mem_cpy(buf_64b, buf_64b+_32b, _32b);
 		mem_cpy(buf_64b+_32b, buf_32b, _32b);
@@ -160,7 +160,7 @@ void des_pad(unsigned char *buf, const size_t len){
        	n = 8;
 #ifdef	PKCS
 	for (size_t i=0; i<n; ++i)
-       	buf[len+i] = (unsigned char) n;
+	       	buf[len+i] = (unsigned char) n;
 #else
 	for (size_t i=0; i<n; ++i)
    		buf[len+i] = 0x00;

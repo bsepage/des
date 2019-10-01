@@ -53,10 +53,11 @@ int main(void)
 
 	src_big_len = mem_frd(src_big, "usr/plaintext3.txt", _4096b);
 	des_pad(src_big, src_big_len);
+
 	mem_frd(key, "usr/key.txt", _64b);
 
 	for (size_t i=0; i<src_big_len/8+1; ++i)
-       	des(dst_big+i*8, src_big+i*8, key, true);
+	       	des(dst_big+i*8, src_big+i*8, key, true);
 	mem_fwt(dst_big, "usr/ciphertext3.txt", src_big_len+(8-src_big_len%8));
 
 	mem_rnd(src_big, _4096b);
@@ -72,7 +73,7 @@ int main(void)
 	mem_frd(key, "usr/key.txt", _64b);
 
 	for (size_t i=0; i<src_big_len/8; ++i)
-       	des(dst_big+i*8, src_big+i*8, key, false);
+       		des(dst_big+i*8, src_big+i*8, key, false);
 	mem_fwt(dst_big, "usr/plaintext4.txt", src_big_len);
 
 	mem_rnd(src_big, _4096b);
@@ -80,6 +81,6 @@ int main(void)
 	mem_rnd(key, _64b);
 
 
-    exit(EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }
 

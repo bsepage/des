@@ -10,7 +10,7 @@ static char authorized[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
  * \param len const size_t Size (bytes) of dst buffer.
  *
  */
-void mem_cpy(unsigned char *dst, const unsigned char *src, const size_t len){
+void mem_cpy(unsigned char *dst, const unsigned char *src, const size_t len) {
 	for (size_t i=0; i<len; ++i)
    		dst[i] = src[i];
 }
@@ -21,7 +21,7 @@ void mem_cpy(unsigned char *dst, const unsigned char *src, const size_t len){
  * \param len const size_t Size (bytes) of buf buffer.
  *
  */
-void mem_prt(const unsigned char *buf, const size_t len){
+void mem_prt(const unsigned char *buf, const size_t len) {
    	printf("0x");
    	for (size_t i=0; i<len; ++i)
    		printf("%02X", buf[i]);
@@ -34,7 +34,7 @@ void mem_prt(const unsigned char *buf, const size_t len){
  * \param len const size_t Size (bytes) of buf buffer.
  *
  */
-void mem_clr(volatile unsigned char *buf, const size_t len){
+void mem_clr(volatile unsigned char *buf, const size_t len) {
    	for (size_t i=0; i<len; ++i)
    		buf[i] = 0x00;
 }
@@ -46,7 +46,7 @@ void mem_clr(volatile unsigned char *buf, const size_t len){
  * \param len const size_t Size (bytes) of dst buffer.
  *
  */
-void mem_xor(unsigned char *dst, const unsigned char *src, const size_t len){
+void mem_xor(unsigned char *dst, const unsigned char *src, const size_t len) {
    	for (size_t i=0; i<len; ++i)
    		dst[i] ^= src[i];
 }
@@ -57,7 +57,7 @@ void mem_xor(unsigned char *dst, const unsigned char *src, const size_t len){
  * \param len const size_t Size (bytes) of buf buffer.
  *
  */
-void mem_rnd(volatile unsigned char *buf, const size_t len){
+void mem_rnd(volatile unsigned char *buf, const size_t len) {
    	for (size_t i=0; i<len; ++i)
    		buf[i] = (unsigned char) rand();
 }
@@ -68,7 +68,7 @@ void mem_rnd(volatile unsigned char *buf, const size_t len){
  * \param len const size_t Size (bytes) of buf buffer.
  *
  */
-void mem_san(unsigned char *buf, const size_t len){
+void mem_san(unsigned char *buf, const size_t len) {
 	const unsigned char *end = (unsigned char*) (buf + len);
 	for (buf+=strspn((char*) buf, authorized); *buf!=*end; buf+=strspn((char*) buf, authorized))
 		*buf = 0x5F;
@@ -86,11 +86,11 @@ size_t mem_frd(unsigned char *buf, const char *path, const size_t len) {
    	size_t i = 0, n = 0;
    	FILE *f = fopen(path, "r");
    	if (!f)
-       	HANDLE_ERROR("fopen");
+	       	HANDLE_ERROR("fopen");
    	for (buf[i]=(unsigned char)fgetc(f); !feof(f) && i<len; i++, buf[i]=(unsigned char)fgetc(f))
-       	n++;
+	       	n++;
    	if (fclose(f))
-       	HANDLE_ERROR("fclose");
+	       	HANDLE_ERROR("fclose");
 /*	mem_san(buf, n);*/
    	return n;
 }
@@ -106,9 +106,9 @@ void mem_fwt(unsigned char *buf, const char *path, const size_t len) {
    	size_t i = 0;
    	FILE *f = fopen(path, "w");
    	if (!f)
-       	HANDLE_ERROR("fopen");
+	       	HANDLE_ERROR("fopen");
    	for (fputc((char)buf[i], f); i<len-1; i++, fputc((char)buf[i], f))
-       	;
+	       	;
    	if (fclose(f))
-       	HANDLE_ERROR("fclose");
+	       	HANDLE_ERROR("fclose");
 }
