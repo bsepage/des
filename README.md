@@ -1,5 +1,5 @@
 # des
-Data Encryption Standard: Easy to Read and Learn
+Data Encryption Standard: Easy to Learn
 
 
 # What
