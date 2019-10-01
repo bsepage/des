@@ -41,5 +41,5 @@ The files usr/plaintext3.txt and usr/plaintext4.txt should give the same output,
 The current version of the project has been validated against memory leaks as follows
 - valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./bin/des
 
-If you decide to use the 'memory.c: mem_san()' funcion, forbidden characters will be replaced, causing usr/plaintext1.txt and usr/plaintext2.txt (or usr/plaintext3.txt and usr/plaintext4.txt) to be different. The character whitelist is specififed in 'memory.c:authorized[]'. In order to sanitize input files, uncomment the appropiate line in 'memory.c: mem_frd()'
+If you decide to use the 'memory.c: mem_san()' funcion, forbidden characters will be replaced, causing usr/plaintext1.txt and usr/plaintext2.txt (or usr/plaintext3.txt and usr/plaintext4.txt) to be different. The character whitelist is specififed in 'memory.c:authorized[]'. In order to sanitize input files, uncomment the appropiate line in 'memory.c: mem_frd()'.
 
