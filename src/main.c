@@ -56,7 +56,6 @@ int main(void)
 
 	for (size_t i=0; i<src_big_len/8+1; ++i)		// Run DES encryption for each block of 8 bytes
 	       	des(dst_big+i*8, src_big+i*8, key, true);
-/*	mem_fwt(dst_big, "usr/ciphertext3.txt", src_big_len+(8-src_big_len%8));*/
 	mem_fwt(dst_big, "usr/ciphertext3.txt", src_big_len+(8-src_big_len%8));
 
 	mem_rnd(src_big, _4096b);				// Clear buffers
