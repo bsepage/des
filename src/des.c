@@ -45,7 +45,7 @@ void des_rot_lft(unsigned char *key, size_t len) {
 		unsigned char b0 = BIT(key, 0), b28 = BIT(key, 28);
 		for (size_t i=0; i<7; ++i) {
 			if ((key[i] & 0x80) && i)
-        	        key[i-1] |= 0x01;
+        	        	key[i-1] |= 0x01;
 			key[i] <<= 1;
 		}
 		(b0) ? SET(key, 27) : CLR(key, 27);
