@@ -17,9 +17,6 @@
 #define _48b	6
 #define _32b	4
 
-#define HANDLE_ERRORNO(err, msg)	\
-   	do{ errno = err; perror(msg); exit(EXIT_FAILURE); }while(0)
-
 #define HANDLE_ERROR(msg)   		\
    	do{ perror(msg); exit(EXIT_FAILURE); }while(0)
 
