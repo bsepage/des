@@ -15,6 +15,8 @@ Key and plaintexts can be modified directly from their respective text files (se
 
 # How
 
+Note for Windows users: install Cygwin to emulate Linux inside your Windos host (install at least the make and clang packages). Copy this project into your Cygwin folder. Once inside the Cygwin terminal, navigate to the project folder and proceed with the following commands.
+
 Compile and run the code
 - make clean
 - make
