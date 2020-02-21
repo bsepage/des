@@ -1,5 +1,5 @@
 # des
-Data Encryption Standard: Easy to Learn
+A simple implementation of the Data Encryption Standard (DES)
 
 
 # What
